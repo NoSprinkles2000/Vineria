@@ -5,7 +5,7 @@
 
         $usuario=$_POST['email'];
         $password=$_POST['contrasena'];
-
+        $nombre=$_POST['nombre'];
         //*****Conexion a la Base de Datos ***/
         $conexion=mysqli_connect("localhost", "root", "");
         mysqli_select_db($conexion,"vineriabd");
@@ -14,21 +14,13 @@
             CONSULTA 
                 mysql_real_escape_string, evita las injecciones SQL dañinas.
         ***/
-        $consulta=sprintf("SELECT * FROM usuarios WHERE email='%s' AND contrasena='%s'",mysqli_real_escape_string($conexion,$usuario),mysqli_real_escape_string($conexion,$password));
-        $resultado=mysqli_query($conexion,$consulta);
-
-        if(mysqli_num_rows($resultado) > 0){
-            session_start();
-            $fila=mysqli_fetch_array($resultado);
-            $_SESSION['usuario'] = $fila['id'];
-            $_SESSION['nombre'] = $fila['nombre'];
-            $_SESSION['logeado'] = true;
-            echo "si jalo";
-            //header("Location: panel.php");
-        }else{
-			//$error="El usuario no existe";
-			echo "usuario no reconocido";
-        }
+       // $consulta=sprintf("SELECT * FROM usuarios WHERE email='%s' AND contrasena='%s'",mysqli_real_escape_string($conexion,$usuario),mysqli_real_escape_string($conexion,$password));
+        $consulta=sprintf("INSERT INTO usuarios (email, nombre, contrasena, permiso) VALUES ('%s','%s','%s', 0)",
+         mysqli_real_escape_string($conexion,$usuario),
+         mysqli_real_escape_string($conexion,$password),
+         mysqli_real_escape_string($conexion,$nombre));
+        mysqli_query($conexion,$consulta);
+        echo "usuario registrado";
 
     }
 ?>
@@ -125,10 +117,11 @@
 								<br>
 								<br>
 								<div>Email: <br> <input type="email" class="form-control" placeholder="ejemplo@ejemplo.com" name="email"></div>
-								<div>Contraseña: <br> <input type="password" class="form-control" name="contrasena"></div>
+								<div>Nombre: <br> <input type="text" class="form-control" placeholder="Jose Perez" name="nombre"></div>
+                                <br>
+                                <div>Contraseña: <br> <input type="password" class="form-control" name="contrasena"></div>
 								<br>
-								<div><button type="submit" class="btn btn-default btn-block" name="submit">Entrar</button></div>
-								<div> ¿No tienes cuenta? <a href="signup.php" >Regístrate</a></div>
+								<div><button type="submit" class="btn btn-default btn-block" name="submit">Registrar</button></div>
 							</form>
 						</div>
 					</div>
