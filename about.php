@@ -78,7 +78,7 @@
 							<li><a href="./single.html">Tienda</a></li>
 							<li><a href="./about.php">Acerca de</a></li>
 							<li><a href="./contact.php">Contacto</a></li>
-							<li><a href="./contact.html">Ingresar</a></li>
+							<li><a href="./login.php">Ingresar</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">
