@@ -126,7 +126,9 @@
 								<br>
 								<div>Email: <br> <input type="email" class="form-control" placeholder="ejemplo@ejemplo.com" name="email"></div>
 								<div>Contraseña: <br> <input type="password" class="form-control" name="contrasena"></div>
+								<br>
 								<div><button type="submit" class="btn btn-default btn-block" name="submit">Entrar</button></div>
+								<div> ¿No tienes cuenta? <a href="/signup.php" >Regístrate</a></div>
 							</form>
 						</div>
 					</div>
